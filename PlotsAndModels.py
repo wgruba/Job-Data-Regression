@@ -21,7 +21,9 @@ def CustomModel():
     customModel = CustomModelWrapper(func, params)
     Y_predicted_custom = customModel.predict(X_test)
 
-    print('Mean squared error from curvefit')
+    print("\nMean absolute percentage error from Custom Model ")
+    print(mean_absolute_percentage_error(Y_test, Y_predicted_custom))
+    print('Mean squared error from Custom Model')
     print(mean_squared_error(Y_test,Y_predicted_custom))
 
     return Y_predicted_custom
@@ -31,8 +33,11 @@ def LinearModel():
     linearModel.fit(X_train, Y_train)
     Y_predicted_linear = linearModel.predict(X_test)
 
-    print('Mean squared error from curvefit')
+    print("\nMean absolute percentage error from Linear Model")
+    print(mean_absolute_percentage_error(Y_test, Y_predicted_linear))
+    print('Mean squared error from Linear Model')
     print(mean_squared_error(Y_test, Y_predicted_linear))
+
 
     return Y_predicted_linear
 
@@ -41,7 +46,9 @@ def SVRModel():
     SVRModel.fit(X_train,Y_train)
     Y_predicted_SVR = SVRModel.predict(X_test)
 
-    print('Mean squared error from curvefit')
+    print("\nMean absolute percentage error from SVR")
+    print(mean_absolute_percentage_error(Y_test, Y_predicted_SVR))
+    print('Mean squared error from SVR')
     print(mean_squared_error(Y_test, Y_predicted_SVR))
 
     return Y_predicted_SVR
@@ -53,9 +60,9 @@ def Plots():
 
     Range = len(Y_test)
 
-    sns.scatterplot(x = range(0,Range),y= Y_test,color ='white',edgecolor = 'black')
-    sns.lineplot(x = range(0,Range), y = YCustom,color = 'black')
-    sns.lineplot(x = range(0,Range), y = YLinear,color = 'red')
+    sns.scatterplot(x=range(0,Range), y=Y_test, color='white',edgecolor='black')
+    sns.lineplot(x=range(0,Range), y=YCustom, color='purple')
+    sns.lineplot(x=range(0,Range), y=YLinear, color='red')
     sns.lineplot(x=range(0, Range), y=YSVR, color='green')
 
     plt.show()
