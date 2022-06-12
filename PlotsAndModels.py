@@ -11,6 +11,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 
 
+
 X, Y = getData('Jobs_By_Industry___Beginning_2012.csv')
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=.20, random_state=40)
@@ -61,9 +62,9 @@ def Plots():
     Range = len(Y_test)
 
     sns.scatterplot(x=range(0,Range), y=Y_test, color='white',edgecolor='black')
-    sns.lineplot(x=range(0,Range), y=YCustom, color='purple')
-    sns.lineplot(x=range(0,Range), y=YLinear, color='red')
-    sns.lineplot(x=range(0, Range), y=YSVR, color='green')
+    plt.scatter(x=range(0,Range), y=YCustom, color='purple')
+    plt.scatter(x=range(0,Range), y=YLinear, color='red')
+    plt.scatter(x=range(0, Range), y=YSVR, color='green')
 
     plt.show()
 
