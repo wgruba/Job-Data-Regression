@@ -9,7 +9,17 @@ def getData(importfile):
         df = pd.read_csv(importfile, sep=',')
         for column in df.columns:
             df = df[df[column].notnull()]
-        df = df.sample(n = 1000)
+        dictionary = df.to_dict('records')
+        helper = []
+        for row in dictionary:
+            if row['Year'] == 2012:
+                helper.append(row['Jobs'])
+            else:
+                for secondrow in dictionary:
+                    if int(row['Year'])-1 == int(secondrow['Year']) and row['Region'] == secondrow['Region'] and row['Industry'] == secondrow['Industry']:
+                        helper.append(secondrow['Jobs'])
+        df['PrevJobs'] = helper
+        df = df.sample(n=2000)
         df.to_csv(filename,index=False)
         print('Downloaded')
     else:
